@@ -95,4 +95,5 @@ TaskManagerApp/
 
 ---
 
-Хочешь, чтобы я сделал такой вариант?
+<img width="1280" height="685" alt="изображение" src="https://github.com/user-attachments/assets/dd83be4d-dd7f-4bff-803d-1a1ff6699b13" />
+
