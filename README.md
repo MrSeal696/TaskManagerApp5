@@ -1,22 +1,29 @@
+# TaskManagerApp
+
 Приложение для управления задачами, созданное на .NET MAUI с использованием паттерна MVVM.
 
 ## Описание
 
-Приложение позволяет вести список задач, просматривать их детали и редактировать информацию о каждой задаче.
+Приложение позволяет создавать, редактировать и удалять задачи, хранить их локально в базе SQLite, а также синхронизировать с облачным REST API.
 
 ### Основные возможности
 
 * Просмотр списка задач
-* Просмотр деталей выбранной задачи
+* Добавление, редактирование и удаление задач
 * Изменение статуса выполнения задачи
-* Редактирование названия и описания задачи
-* Переход между страницами с сохранением данных
+* Детальная страница с информацией о задаче
+* Локальное хранение через SQLite
+* Экспорт и импорт задач в CSV файл
+* Синхронизация с облачным API (JSONPlaceholder)
+* Обработка сетевых ошибок и автоматический retry
 
 ## Структура проекта
 
-* **Models** — модель данных `TaskItem`
+* **Models** — модели данных (`TaskItem`)
 * **ViewModels** — `BaseViewModel`, `TaskListViewModel`, `TaskDetailViewModel`
 * **Pages** — `TaskListPage`, `TaskDetailPage`
+* **Services** — `TaskRepository`, `SyncTaskRepository`, `FileService`
+* **Services/Api** — `TaskApiService`, `ITaskApiService`, `TaskDto`
 * **AppShell** — навигация между страницами
 
 ## Технологии
@@ -25,13 +32,16 @@
 * .NET MAUI
 * XAML
 * MVVM, INotifyPropertyChanged, ICommand
+* SQLite (sqlite-net-pcl)
+* HttpClient для REST API
+* Dependency Injection
 
 ## Как запустить
 
 1. Открыть проект в Visual Studio
 2. Убедиться, что выбран .NET 10
-3. Нажать «Запуск»
-4. Выбрать платформу (Windows или Android)
+3. Установить NuGet пакет `sqlite-net-pcl`
+4. Нажать «Запуск»
+5. Выбрать платформу (Windows или Android)
 
-<img width="1896" height="999" alt="изображение" src="https://github.com/user-attachments/assets/afa75511-3cb7-4447-94f6-0357b19b0951" />
 
