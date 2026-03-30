@@ -1,0 +1,31 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:TaskManagerApp.ViewModels"
+             x:Class="TaskManagerApp.TaskListPage"
+             Title="Список задач">
+
+
+
+    <VerticalStackLayout Padding="10">
+
+        <CollectionView ItemsSource="{Binding Tasks}"
+                        SelectionMode="Single"
+                        SelectedItem="{Binding SelectedTask, Mode=TwoWay}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border Stroke="Gray" StrokeThickness="1" Padding="10" Margin="5">
+                        <VerticalStackLayout>
+                            <Label Text="{Binding Title}" FontSize="18"/>
+                            <Label Text="{Binding Description}" FontSize="14" TextColor="Gray"/>
+                            <Label Text="{Binding DueDate, StringFormat='Срок: {0:d}'}" FontSize="12"/>
+                        </VerticalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button Text="Загрузить задачи" Command="{Binding LoadTasksCommand}"/>
+
+    </VerticalStackLayout>
+
+</ContentPage>

@@ -1,0 +1,22 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:TaskManagerApp.ViewModels"
+             x:Class="TaskManagerApp.TaskDetailPage"
+             Title="Детали задачи">
+
+
+
+    <VerticalStackLayout Padding="20" Spacing="10">
+
+        <Entry Text="{Binding CurrentTask.Title}" Placeholder="Название задачи"/>
+        <Editor Text="{Binding CurrentTask.Description}" Placeholder="Описание задачи"/>
+        <Label Text="{Binding CurrentTask.DueDate, StringFormat='Срок: {0:d}'}"/>
+        <Label Text="{Binding CurrentTask.IsCompleted, StringFormat='Выполнено: {0}'}"/>
+
+        <Button Text="Переключить статус" Command="{Binding ToggleCompletedCommand}"/>
+        <Button Text="Сохранить" Command="{Binding SaveCommand}"/>
+        <Button Text="Назад" Clicked="OnBackClicked"/>
+
+    </VerticalStackLayout>
+
+</ContentPage>
