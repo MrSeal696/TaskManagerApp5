@@ -1,48 +1,98 @@
-# TaskManagerApp
-
-Приложение для управления задачами, созданное на .NET MAUI с использованием паттерна MVVM.
+Приложение для управления задачами на .NET MAUI с использованием паттерна MVVM и синхронизацией с облачным API.
 
 ## Описание
 
-Приложение позволяет создавать, редактировать и удалять задачи, хранить их локально в базе SQLite, а также синхронизировать с облачным REST API.
+Приложение позволяет:
 
-### Основные возможности
+* вести список задач,
+* просматривать детали задачи,
+* редактировать и удалять задачи,
+* сохранять данные локально в SQLite,
+* экспортировать и импортировать задачи в CSV,
+* синхронизировать задачи с облачным API.
 
-* Просмотр списка задач
-* Добавление, редактирование и удаление задач
-* Изменение статуса выполнения задачи
-* Детальная страница с информацией о задаче
-* Локальное хранение через SQLite
-* Экспорт и импорт задач в CSV файл
-* Синхронизация с облачным API (JSONPlaceholder)
-* Обработка сетевых ошибок и автоматический retry
+---
+
+## Основные возможности
+
+### КТ-3 (MVVM)
+
+* Модели данных с Id, Title, Description, DueDate, IsCompleted, Priority
+* ViewModel с INotifyPropertyChanged и командами для действий пользователя
+* Страница списка задач с CollectionView
+* Страница деталей задачи с редактированием и кнопкой "Назад"
+* Навигация между страницами через Shell
+
+### КТ-4 (Локальное хранилище)
+
+* Интерфейс ITaskRepository и реализация TaskRepository с SQLite
+* Сохранение задач между запусками приложения
+* CRUD операции (создание, чтение, обновление, удаление)
+* Экспорт/импорт задач через CSV
+* Обработка ошибок при работе с данными
+
+### КТ-5 (Облачная синхронизация)
+
+* API клиент ITaskApiService и TaskApiService для работы с JSONPlaceholder
+* DTO классы для передачи данных
+* SyncTaskRepository для объединения локального и облачного хранилища
+* Синхронизация задач с приоритетом облака
+* Обработка сетевых ошибок и retry логика
+
+---
 
 ## Структура проекта
 
-* **Models** — модели данных (`TaskItem`)
-* **ViewModels** — `BaseViewModel`, `TaskListViewModel`, `TaskDetailViewModel`
-* **Pages** — `TaskListPage`, `TaskDetailPage`
-* **Services** — `TaskRepository`, `SyncTaskRepository`, `FileService`
-* **Services/Api** — `TaskApiService`, `ITaskApiService`, `TaskDto`
-* **AppShell** — навигация между страницами
+```
+TaskManagerApp/
+│ Models/
+│   TaskItem.cs
+│ ViewModels/
+│   BaseViewModel.cs
+│   TaskListViewModel.cs
+│   TaskDetailViewModel.cs
+│ Pages/
+│   TaskListPage.xaml
+│   TaskListPage.xaml.cs
+│   TaskDetailPage.xaml
+│   TaskDetailPage.xaml.cs
+│ Services/
+│   ITaskRepository.cs
+│   TaskRepository.cs
+│   FileService.cs
+│   SyncTaskRepository.cs
+│   Api/
+│     ITaskApiService.cs
+│     TaskApiService.cs
+│     TaskDto.cs
+│ AppShell.xaml
+│ AppShell.xaml.cs
+│ App.xaml
+│ App.xaml.cs
+```
+
+---
 
 ## Технологии
 
 * .NET 10
 * .NET MAUI
-* XAML
-* MVVM, INotifyPropertyChanged, ICommand
-* SQLite (sqlite-net-pcl)
-* HttpClient для REST API
-* Dependency Injection
+* MVVM (INotifyPropertyChanged, ICommand)
+* SQLite
+* HttpClient + JSON
+* Shell для навигации
+
+---
 
 ## Как запустить
 
 1. Открыть проект в Visual Studio
 2. Убедиться, что выбран .NET 10
-3. Установить NuGet пакет `sqlite-net-pcl`
-4. Нажать «Запуск»
+3. Установить пакет `sqlite-net-pcl` через NuGet
+4. Собрать проект
 5. Выбрать платформу (Windows или Android)
+6. Запустить приложение
 
-<img width="1894" height="1015" alt="изображение" src="https://github.com/user-attachments/assets/82e6941f-cde6-41a2-a4cc-b9457a8c54dc" />
+---
 
+Хочешь, чтобы я сделал такой вариант?
